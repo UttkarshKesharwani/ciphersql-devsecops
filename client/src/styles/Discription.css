@@ -1,0 +1,101 @@
+.description-container {
+    padding: 10px;
+    font-family: inherit;
+    color: #333;
+}
+
+.description-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.difficulty-tag {
+    margin-bottom: 20px;
+}
+
+.question-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.schemas .schema-block {
+    margin-bottom: 20px;
+}
+
+.schema-block p {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.schema-block code {
+    background-color: #f1f1f1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.beginner-table {
+    width: 60%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.beginner-table th,
+.beginner-table td {
+    border: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.beginner-table th {
+    background-color: #f8f9fa;
+    color: #4a4a4a;
+    font-weight: 600;
+}
+
+.beginner-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.loading-question {
+    padding: 20px;
+}
+
+.schemas {
+    margin-top: 20px;
+}
+
+.question-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.example-block {
+    margin-top: 30px;
+}
+
+.example-inner {
+    margin-top: 15px;
+}
+
+.example-input-label {
+    margin-bottom: 10px;
+}
+
+.example-table-container {
+    margin-bottom: 15px;
+}
+
+.example-table-name {
+    margin-bottom: 5px;
+}
+
+.example-output-label {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

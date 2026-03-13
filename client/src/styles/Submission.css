@@ -1,0 +1,23 @@
+
+
+.submission{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.accepted{
+    color: green;
+}
+.error{
+    color: red;
+}
+.Accepted{
+    color: green;
+}
+.Error{
+    color: red;
+}

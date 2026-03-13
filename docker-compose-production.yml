@@ -1,0 +1,88 @@
+
+
+services:
+  frontend:
+    image: uttkarsh63066/ciphersql-frontend:latest
+    container_name: frontend
+    ports:
+      - "80:80"
+    networks:
+      - cipher-net
+
+  backend:
+    image: uttkarsh63066/ciphersql-backend:latest
+    container_name: backend
+    env_file:
+      - ./server/.env.docker
+    ports:
+      - "5000:5000"
+    networks:
+      - cipher-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:18
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pg-data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    networks:
+      - cipher-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    
+  mongo:
+    image: mongo:8.2
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+      - "27017:27017"
+    networks:
+      - cipher-net
+    volumes:
+      - ./mongo-init:/docker-entrypoint-initdb.d
+      - mongo-data:/data/db
+    healthcheck:  
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    
+  dashboard:
+    image: dpage/pgadmin4
+    container_name: postgres-dashboard
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    networks:
+      - cipher-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+volumes:
+  pg-data:
+  mongo-data:
+
+networks:
+  cipher-net:
+    driver: bridge
+
+

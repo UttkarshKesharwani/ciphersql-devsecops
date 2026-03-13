@@ -1,0 +1,26 @@
+
+
+export async function login(email, password) {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+    });
+    const res = await response.json();
+    return res;
+}
+
+export async function signup(name, email, password) {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/signup`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+    });
+    const res = await response.json();
+    return res;
+}
+
